@@ -1,0 +1,23 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <windows.h>
+#include <math.h>
+#include <conio.h>
+int main()
+{
+
+    int doi,num,tecla;
+
+    inicio:
+    printf("\n digite um numero e pressione enter:");
+    scanf("%d",&num);
+    doi=pow(num,2);
+    printf("o quadrado desse numero e:%d \n\n",doi);
+
+    num=0;
+    doi=0;
+
+
+    goto inicio;
+    return 0;
+}
