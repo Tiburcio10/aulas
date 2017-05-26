@@ -1,0 +1,85 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <conio.h>
+
+
+struct sensor
+{
+    int s1;
+    int s2;
+};
+
+struct motors
+{
+    int m1;
+    int m2;
+};
+
+struct sensor lesensor();
+struct motors InteligenciaArtificial(int ss1 , int ss2);
+void DriveMotors(int M1 , int M2);
+
+
+int main()
+{
+    int s1, s2, m1, m2;
+
+    struct sensor leitura ;
+    struct motors IA ;
+
+while(1){
+    if (kbhit()){
+        leitura = lesensor();
+        s1 = leitura.s1 ;
+        s2 = leitura.s2 ;
+    }
+
+
+    IA = InteligenciaArtificial(s1,s2);
+
+    m1 = IA.m1 ;
+    m2 = IA.m2 ;
+
+    DriveMotors(m1,m2);
+}
+}
+struct sensor lesensor()
+{
+    int s1, s2;
+    int sensor = getch();
+
+    if     (sensor == '0'){ s1=0 ; s2=0 ; }
+    else if(sensor == '1'){ s1=1 ; s2=0 ; }
+    else if(sensor == '2'){ s1=0 ; s2=1 ; }
+    else if(sensor == '3'){ s1=1 ; s2=1 ; }
+    else                  { s1=0 ; s2=0 ; }
+
+    struct sensor lesensores;
+
+    lesensores.s1 = s1 ;
+    lesensores.s2 = s2 ;
+
+    return lesensores ;
+};
+
+struct motors InteligenciaArtificial(int ss1 ,int ss2)
+{
+
+    int mm1 , mm2 ;
+
+    if     (ss1 == 1 && ss2 == 0){ mm1 = 1 ; mm2 = 0 ; }
+    else if(ss1 == 0 && ss2 == 1){ mm1 = 0 ; mm2 = 1 ; }
+    else if(ss1 == 1 && ss2 == 1){ mm1 = 0 ; mm2 = 1 ; }
+    else if(ss1 == 0 && ss2 == 0){ mm1 = 1 ; mm2 = 1 ; }
+
+    struct motors motores ;
+
+    motores.m1 = mm1 ;
+    motores.m2 = mm2 ;
+
+    return motores ;
+};
+void DriveMotors(int M1 , int M2)
+{
+    printf("\r M1 = %d e  M2 = %d", M1, M2);
+}
